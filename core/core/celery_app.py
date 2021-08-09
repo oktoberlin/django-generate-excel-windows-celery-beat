@@ -18,8 +18,8 @@ app.config_from_object(settings, namespace='CELERY')
 # Celery Beat tasks registration
 app.conf.beat_schedule = {
     'Send_mail_to_Client': {
-        'task': 'home.tasks.send_mail_task',
-        'schedule': 30.0, #every 30 seconds it will be called
+        'task': 'home.tasks.send_mail_task_daily',
+        'schedule': 60.0, #every 30 seconds it will be called
         #'args': (2,) you can pass arguments also if rquired
         }
 }
