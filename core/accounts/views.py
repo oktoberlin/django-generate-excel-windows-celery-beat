@@ -44,6 +44,7 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('community:community')
+    
 @login_required
 def profile(request):
     if request.method == 'POST':

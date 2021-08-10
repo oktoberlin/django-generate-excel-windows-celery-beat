@@ -1,5 +1,36 @@
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">DKM</span>
-    </div>
+<nav class="navbar navbar-expand-sm shadow-sm navbar navbar-dark bg-dark">
+  <a class="navbar-brand mr-3" href="{% url 'home:home' %}">
+    <h1 class="navbar-brand ml-2 mb-0 h1">DKM</h1>
+</a>  
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav ">
+          
+          {% if user.is_authenticated %}
+          
+          <li class="nav-item active ml-auto mb-1">
+              <a class="nav-link shadow-sm free-class-nav font-weight-bold rounded ml-auto mr-2 px-2" href="{% url 'home:home' %}"><i class="fas fa-user"></i> Profil</a>
+          </li>
+
+          <li class="nav-item active ml-auto mb-1">
+              <a class="nav-link shadow-sm free-class-nav font-weight-bold rounded ml-auto mr-2 px-2" href="{% url 'user:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item active ml-auto mb-1">
+              <a class="nav-link free-class-nav font-weight-bold rounded ml-auto mr-2 px-2" href="{% url 'user:login' %}" type="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+              
+          </li>
+          
+              
+          {% endif %}
+
+
+          
+      </ul>
+  </div>
+
 </nav>
