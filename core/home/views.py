@@ -14,12 +14,6 @@ def index(request):
         # check whether it's valid:
         if form.is_valid():
             form.save()
-            client = form.cleaned_data.get('client')
-            email = form.cleaned_data.get('email')
-            start_date = form.cleaned_data.get('start_date')
-            end_date = form.cleaned_data.get('end_date')
-
-            send_mail_task(client, email, start_date, end_date)
             return redirect ("home:success")
     else:
         form = generate_excel_form()
