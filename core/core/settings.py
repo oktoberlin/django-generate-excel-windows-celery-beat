@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
 
     'django_windows_tools',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -172,3 +173,7 @@ LOGIN_REDIRECT_URL = 'home:home'
 LOGIN_URL = 'user:login'
 
 SITE_ID = 2
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}

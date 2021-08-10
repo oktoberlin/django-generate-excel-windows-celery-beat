@@ -3,6 +3,9 @@
 {% block content %}
 {% include 'navbar.html' %}
 {% load crispy_forms_tags %}
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+{% bootstrap_css %}         {# Embed Bootstrap CSS #}
+{% bootstrap_javascript jquery='full' %}  {# Embed Bootstrap JS+jQuery #}
 <!--action="/thanks/" 
 <form method="post">
     {% csrf_token %}
@@ -27,7 +30,7 @@
               </div>
               <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                 {{ form.end_date }}
-                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
