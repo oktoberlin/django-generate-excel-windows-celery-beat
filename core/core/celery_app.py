@@ -8,7 +8,7 @@ from celery.schedules import crontab
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 app = Celery('core')
 app.conf.enable_utc=False
-app.conf.update(timezone='Asia/Kolkata')
+app.conf.update(timezone='Asia/Jakarta')
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
@@ -19,7 +19,7 @@ app.config_from_object(settings, namespace='CELERY')
 app.conf.beat_schedule = {
     'Send_mail_to_Client': {
         'task': 'home.tasks.send_mail_task_daily',
-        'schedule': 60.0, #every 30 seconds it will be called
+        'schedule': crontab(hour=16, minute=41), #every 30 seconds it will be called
         #'args': (2,) you can pass arguments also if rquired
         }
 }
