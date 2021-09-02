@@ -10,7 +10,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from .models import generate_excel
+from home.models import generate_excel
 
 def send_mail_task(client, email, start_date, end_date):
     # connecting server database to python

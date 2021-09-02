@@ -8,7 +8,7 @@ from celery.schedules import crontab
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 app = Celery('core')
 app.conf.enable_utc=False
-app.conf.update(timezone='Asia/Kolkata')
+app.conf.update(timezone='Asia/Jakarta')
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys

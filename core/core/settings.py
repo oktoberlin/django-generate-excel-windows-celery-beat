@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x2g+8d-lmk06m78@1jh#!gi%9=3iybjshf@@9imrmp%pc^m@=c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'home',
+    'djcelery',
     'accounts',
     'crispy_forms',
     'django_celery_results',
@@ -90,7 +91,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_excel_2',
+        'NAME': 'test',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
