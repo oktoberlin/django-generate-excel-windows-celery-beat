@@ -19,7 +19,7 @@ app.config_from_object(settings, namespace='CELERY')
 app.conf.beat_schedule = {
     'Send_mail_to_Client': {
         'task': 'home.tasks.send_mail_task_daily',
-        'schedule': crontab(hour=16, minute=41), #every 30 seconds it will be called
+        'schedule': crontab(hour=13, minute=59), #every 30 seconds it will be called
         #'args': (2,) you can pass arguments also if rquired
         }
 }

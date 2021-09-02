@@ -1,0 +1,51 @@
+LoadFile "C:/Users/WINDOWS/AppData/Local/Programs/Python/Python37/python37.dll"
+LoadModule wsgi_module "c:/xampp/htdocs/test_excel2/venv/lib/site-packages/mod_wsgi/server/mod_wsgi.cp37-win_amd64.pyd"
+
+
+
+WSGIApplicationGroup %{GLOBAL}
+#path to wsgi.py file #the first “/“ indicates the root url
+WSGIScriptAlias / "c:/xampp/htdocs/test_excel2/core/core/wsgi.py"
+#the one that you get from step 4
+WSGIPythonHome "c:/xampp/htdocs/test_excel2/venv"
+#website path
+WSGIPythonPath "c:/xampp/htdocs/test_excel2/core"
+#directory of website
+<Directory "c:/xampp/htdocs/test_excel2/core/core">
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>
+
+Alias /media "c:/xampp/htdocs/test_excel2/core/media"
+Alias /static "c:/xampp/htdocs/test_excel2/core/static"
+
+<Directory "c:/xampp/htdocs/test_excel2/core/static">
+Require all granted
+</Directory>
+
+<Directory "c:/xampp/htdocs/test_excel2/core/media">
+Require all granted
+</Directory>
+
+
+<VirtualHost *:80>
+    DocumentRoot "C:/web"
+    ServerName php.localhost
+    Alias / C:/web
+    <Directory C:/web>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Order Deny,Allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+
+LoadFile "C:/Users/WINDOWS/AppData/Local/Programs/Python/Python37/python37.dll"
+    LoadModule wsgi_module "c:/xampp/htdocs/test_excel2/venv/lib/site-packages/mod_wsgi/server/mod_wsgi.cp37-win_amd64.pyd"
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIScriptAlias / "c:/xampp/htdocs/test_excel2/core/core/wsgi.py"
+    WSGIPythonHome "c:/xampp/htdocs/test_excel2/venv"
+    WSGIPythonPath "c:/xampp/htdocs/test_excel2/core"
+    Alias /media "c:/xampp/htdocs/test_excel2/core/media"
+    Alias /static "c:/xampp/htdocs/test_excel2/core/static"
