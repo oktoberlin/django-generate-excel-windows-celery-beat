@@ -21,7 +21,13 @@ app.conf.beat_schedule = {
         'task': 'home.tasks.send_mail_task_daily',
         'schedule': crontab(hour=13, minute=59), #every 30 seconds it will be called
         #'args': (2,) you can pass arguments also if rquired
+        },
+    'Send_mail_to_Client2': {
+        'task': 'home.tasks.mysql_to_excel',
+        'schedule': crontab(hour=13, minute=59), #every 30 seconds it will be called
+        #'args': (2,) you can pass arguments also if rquired
         }
+
 }
 app.autodiscover_tasks()
 @app.task(bind=True)

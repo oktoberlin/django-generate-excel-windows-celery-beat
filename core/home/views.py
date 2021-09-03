@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import generate_excel_form
 from django.contrib.auth.decorators import login_required
 
-from .tasks import send_mail_task
+#from .tasks import send_mail_task
 # Create your views here.
 
 @login_required
