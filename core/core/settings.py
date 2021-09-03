@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'home',
+    'djcelery',
     'accounts',
     'crispy_forms',
     'django_celery_results',
@@ -91,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_excel_2',
+        'NAME': 'test',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

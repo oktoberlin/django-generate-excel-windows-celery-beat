@@ -12,9 +12,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+<<<<<<< HEAD
 from .models import generate_excel
 from datetime import datetime, time, timedelta
 import pytz
+=======
+from home.models import generate_excel
+>>>>>>> 571771fd0d924f71ac5624ef04cf2e586a008337
 
 @shared_task
 def mysql_to_excel():
