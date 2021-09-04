@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+{% bootstrap_css %}         {# Embed Bootstrap CSS #}
+{% bootstrap_javascript jquery='full' %}  {# Embed Bootstrap JS+jQuery #}
+<!--action="/thanks/" 
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Submit</button>
+</form>
+{% csrf_token %}
+-->
+<div class="container card shadow border-0 pt-3">
+    <div class="content-section px-5">
+        <form method="GET" name="contNo" class="mb-2 font-weight-bold">
+            
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center">DKM Report</legend>
+                
+                <div>
+                    Container Number: <input type="text" name="containerNumber"><br/>
+                    
+                    
+                </div><br/><br/>
+                
+                
+                
+            </fieldset>
+                
+                <button type="submit" class="btn btn-outline-info mb-2">Save as Pdf</button>
+            </div>
+            
+        </form>
+        <h3> Container List </h3>
+        {% for container in containers %}
+                <p>{{container}}</p>
+                {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

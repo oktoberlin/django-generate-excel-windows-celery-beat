@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-import djcelery
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'home',
-    'djcelery',
+    'report',
     'accounts',
     'crispy_forms',
     'django_celery_results',
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'test_excel_2',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

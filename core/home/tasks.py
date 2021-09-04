@@ -12,38 +12,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-<<<<<<< HEAD
 from .models import generate_excel
 from datetime import datetime, time, timedelta
 import pytz
-=======
-from home.models import generate_excel
->>>>>>> 571771fd0d924f71ac5624ef04cf2e586a008337
 
 @shared_task
-def mysql_to_excel():
-    time_now_filename = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y%m%d")
-    Client = 'PPNP'
-
-    sent = False
-    #day_temp = 0
-    #day_now = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%d")
-    #time_now = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%H:%M")
+def mysql_to_excel(time_now_filename,Client,time_now_email_subject,time_from):
     
-    time_now_email_subject = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y-%m-%d")
-    #time_from = ''
-    #time_from = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y-%m-%d")
-    time_yesterday = (datetime.now(pytz.timezone('Asia/Jakarta'))-timedelta(1)).strftime("%Y-%m-%d %H:%M:%S")
-    time_now = '2021-09-04 09:00:00'
-    #if day_now!=day_temp:
-    #    sent=False
-    #    day_temp=day_now
-    
-    if f'{time_now_email_subject} 09:00:00' <= time_now <= f'{time_now_email_subject} 09:01:00' and sent==False:
-        global time_from
-        time_from= time_now-timedelta(hours=8)
-        sent=True
-        print('awesome')
     '''
     if f'{time_now_email_subject} 16:00:00' <= time_now <= f'{time_now_email_subject} 16:01:00' and sent==False:
         time_from= f'{time_from} 09:00:01'
@@ -3029,7 +3004,33 @@ def mysql_to_excel():
             print ("Check all the addresses in the TO, CC and BCC field. There should be an error or a misspelling somewhere.")
         else:
             print (error_code+": "+error_message)
+
+if __name__ == '__main__':
+    time_now_filename = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y%m%d")
+    Client = 'PPNP'
+
+    sent = False
+    #day_temp = 0
+    #day_now = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%d")
+    #time_now = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%H:%M")
     
+    time_now_email_subject = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y-%m-%d")
+    #time_from = ''
+    #time_from = datetime.now(pytz.timezone('Asia/Jakarta')).strftime("%Y-%m-%d")
+    time_yesterday = (datetime.now(pytz.timezone('Asia/Jakarta'))-timedelta(1)).strftime("%Y-%m-%d %H:%M:%S")
+    time_now = '2021-09-04 09:00:00'
+    #if day_now!=day_temp:
+    #    sent=False
+    #    day_temp=day_now
+    
+    if f'{time_now_email_subject} 09:00:00' <= time_now <= f'{time_now_email_subject} 09:01:00' and sent==False:
+        #global time_from
+        time_from= time_now-timedelta(1)
+        sent=True
+        print('awesome')
+
+        # Database name Query conditions
+        mysql_to_excel(time_now_filename,Client,time_now_email_subject,time_from)   
 '''
 
 @shared_task
