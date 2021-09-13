@@ -13,7 +13,14 @@
     <button type="submit">Submit</button>
 </form>
 {% csrf_token %}
+
+<div id="vue-app">
+    <ul>
+        <li v-for="repair in repairs">[[repair.contno]]</li>
+      </ul>
+  </div>
 -->
+
 <div class="container card shadow border-0 pt-3">
     <div class="content-section px-5">
         <form method="GET" name="contNo" class="mb-2 font-weight-bold">
@@ -35,11 +42,161 @@
             </div>
             
         </form>
-        <h3> Container List </h3>
-        {% for container in containers %}
-                <p>{{container}}</p>
-                {% endfor %}
+        <!--
+        <div>
+            {% for repair in repairs %}
+         
+            <p>  
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample{{repair.contno}}" aria-expanded="false" aria-controls="#multiCollapseExample{{repair.contno}">Toggle element</button> 
+            </p>
+
+            
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample{{repair.contno}}">
+                        <div class="card card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Container Number</th>
+                                    <th>Location</th>
+                                    <th>Damage Code</th>
+                                    <th>Component Code</th>
+                                    <th>
+                                        <button
+                                            id="approve-button"
+                                            type="submit"
+                                            v-bind:class="{isApproved? 'btn-danger' : 'btn-primary'}"
+                                            class="btn my-2"
+                                            v-on:click ="approved" 
+                                        >
+                                            test
+                                        </button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    
+                                    <td>{{repair.contno}}</td>
+                                    <td>{{repair.dmgloc}}</td>
+                                    <td>{{repair.dmgcode}}</td>
+                                    <td>{{repair.compcode}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+        -->
+        <table  id="vue-app" class="table table-striped">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Container Number</th>
+                <th>Location</th>
+                <th>Damage Code</th>
+                <th>Component Code</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="repair in repairs" :key="repair.id">
+                <td>[[repair.id]]</td>
+                <td>[[repair.contno]]</td>
+                <td>[[repair.dmgloc]]</td>
+                <td>[[repair.dmgcode]]</td>
+                <td>[[repair.compcode]]</td>
+                <td>
+                    <a href="#" class="btn btn-primary" id="isApprovedToggle" @click="isApproved" :key='repair.id'>not approved</a>
+                </td>
+                
+              </tr>
+            </tbody>
+        </table>
+        	
+        
     </div>
 </div>
 
+
+<script type="text/javascript">
+    axios.defaults.xsrfCookieName = 'csrftoken';
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    var isApprovedToggle = Vue.createApp({
+        delimiters: ["[[", "]]"],
+        data() {
+            return {
+                id:'',
+                test:''
+            }
+             
+        },
+        created() {
+            this.isApproved()
+        },
+        methods: {
+            isApproved() {
+                var url = 'http://127.0.0.1:8000/report/api/';
+                axios
+                .put(url,{test:true})
+                    .then(response => {
+                        id=1
+                        test = response.data[id].approve
+                        
+                        console.log(test)
+                    })
+                    .catch(error => {
+                        console.log(error);
+                });
+            }
+            
+        },
+    });
+    isApprovedToggle.mount("#isApprovedToggle"); 
+    
+    var getRepairData = Vue.createApp({
+        delimiters: ["[[", "]]"],
+        data() {
+            return {
+                repairs:[],   
+            }
+             
+        },
+        created() {
+                var url = 'http://127.0.0.1:8000/report/api/';
+                axios
+                .get(url)
+                    .then(response => {
+                        this.repairs = response.data
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });     
+        }   
+    });
+    getRepairData.mount("#vue-app"); 
+    /*
+    var approveButton = Vue.createApp({
+        delimiters: ["[[", "]]"],
+        data() {
+            return {
+                isApproved: false   
+            }
+             
+        },
+        methods: {
+            approved() {
+                this.isApproved = !this.isApproved
+            }
+        }
+    });
+    approveButton.mount("#approve-button");
+
+    */
+</script>
 {% endblock %}
