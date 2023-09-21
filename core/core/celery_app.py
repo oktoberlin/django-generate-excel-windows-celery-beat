@@ -13,7 +13,7 @@ app.conf.update(timezone='Asia/Jakarta')
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.
-app.config_from_object(settings, namespace='CELERY')
+app.config_from_object(settings)
 # Load task modules from all registered Django apps.
 # Celery Beat tasks registration
 app.conf.beat_schedule = {
@@ -29,7 +29,7 @@ app.conf.beat_schedule = {
         }
 
 }
-app.autodiscover_tasks()
+app.autodiscover_tasks(settings.INSTALLED_APPS)
 @app.task(bind=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')

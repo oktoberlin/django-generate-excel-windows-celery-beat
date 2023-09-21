@@ -1,4 +1,4 @@
-cd /d E:\DKM\Jakarta Client Excel\test_excel2
+cd /d your\project\path\django-generate-excel-windows-scheduler
 call venv\Scripts\activate.bat
 cd /d core
 python.exe manage.py runserver
